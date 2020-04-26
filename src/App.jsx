@@ -1,39 +1,79 @@
 import React, { Component } from "react"
-import "./style.css";
+import "./style.css"
+import ComputerView from "./components/ComputerView"
+import PlayerView from "./components/PlayerView"
+import ResultShow from "./components/ResultShow"
+import ScoreKeep from "./components/ScoreKeep"
 
 class App extends Component {
 
   state = {
-     playerSelection:"",
-     compSelection:"",
-     latestScore:{player:0,computer:0},
-     cheatMode:{playerCheat:false,computerCheat:false},
-     playerName:""
+     playerPick:"",
+     computerPick:"",
+     playerScore:0,
+     computerScore:0,
+     tieScore:0,
+     cheatMode:false,
+     playerName:"",
+     whoWon:""
    }
 
   
-runGame = (e) => {
+  runGame = (e) => {
+    let playerSelection = e.target.value
+    let computerSelection = computerRandom()
+    let winner = decideWinner(playerSelection,computerSelection)
 
-let playerSelection = event.target.value
-let computerSelection = computerRandom()
+    if (winner=="Player") {
+      this.setState({playerScore:this.state.playerScore+1})
+    } else if (winner=="Computer") {
+      this.setState({computerScore:this.state.computerScore+1})
+    } else {
+      this.setState({tieScore:this.state.tieScore+1})
+    }
 
-}
-
-decideWinner = (player,computer) => {
-
-}
-
-computerRandom = () => {
-  var roll = Math.random();
-  if (roll <= 0.34) {
-      return "Rock"
-  } else if (roll <= 0.67) {
-      return "Paper"
-  } else {
-      return "Scissors"
+    this.setState({
+      playerPick:playerSelection,
+      computerPick:computerSelection,
+      whoWon:winner
+    })
   }
-}
 
+  decideWinner = (player,computer) => {
+    if ((player=="Paper" && computer=="Rock") || (player=="Scissors" && computer=="Paper") || (player=="Rock" && computer=="Scissors")) {
+      return "Player"
+    } else if (player==computer) {
+      return "Tie"
+    } else {
+      return "Computer"
+    }
+  }
+
+  computerRandom = () => {
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+    let roll = getRandomInt(3)
+    if (roll==0) {
+      return "Rock"
+    } else if (roll==1) {
+      return "Paper"
+    } else {
+      return "Scissors"
+    }
+  }
+  
+  reset = () => {
+    this.setState({
+      playerPick:"",
+      computerPick:"",
+      playerScore:0,
+      computerScore:0,
+      tieScore:0,
+      cheatMode:false,
+      whoWon:""
+    })
+  }
 
   render() {
     return (
@@ -42,7 +82,7 @@ computerRandom = () => {
     <h1 id="header">THE  ULTIMATE  ROCK, PAPER, SCISSORS</h1>
     <div class="gamemenu">
       <button id="nwply" class="ui circular nwply big button">New Player</button>
-      <button id="rgame" class="ui circular rgame big button">Reset Game</button>
+      <button id="rgame" class="ui circular rgame big button" onClick={this.reset()}>Reset Game</button>
       <button id="vscore" class="ui circular vscore big button">View Scores</button>
       <div class="selection"><h3 id="cheat">CHEAT</h3>
         <label class="switch">
@@ -56,17 +96,17 @@ computerRandom = () => {
       <div class="row">
         <div class="column left">
           <h2>Player's Selection</h2>
-          <p class="slct">Some text..</p>
+          <PlayerView playerPick={this.state.playerPick}/>
           <p id="cheathint">Computer will select:</p>
         </div>
         <div class="column middle">
           <h2>Score</h2>
-          <h3 class="slct">0-1</h3>
-          <p class="result">Computer Wins</p>
+          <ScoreKeep playerScore={this.state.playerScore} computerScore={this.state.computerScore} tieScore={this.state.tieScore}/>
+          <ResultShow whoWon={this.state.whoWon}/>
         </div>
         <div class="column right">
           <h2>Computer's Selection</h2>
-          <p class="slct">Some text..</p>
+          <ComputerView computerPick={this.state.computerPick}/>
         </div>
       </div>
     </div>
