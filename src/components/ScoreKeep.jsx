@@ -1,12 +1,11 @@
-import React from "react"
+import React from "react";
 
-const ScoreKeep = ({playerScore,computerScore,tieScore  }) => {
-    return (
-        <h3 class="slct">
-            {playerScore}-{computerScore}-{tieScore}
-        </h3>
-    )  
-  }
+const ScoreKeep = (props) => {
+  return (
+    <h3 class="slct">
+      {props.playerScore}-{props.computerScore}-{props.tieScore}
+    </h3>
+  );
+};
 
-  
-  export default ScoreKeep;
+export default ScoreKeep;
