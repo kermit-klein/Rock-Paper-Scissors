@@ -19,7 +19,7 @@ const ComputerView = (props) => {
   }
 
   return (
-    <p class="slct" id={`${getStyle}`}>
+    <p class="slct compselection" id={`${getStyle}`}>
       {showComp}
     </p>
   );

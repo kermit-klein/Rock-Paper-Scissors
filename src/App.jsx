@@ -13,7 +13,7 @@ class App extends Component {
     computerScore: 0,
     tieScore: 0,
     cheatMode: false,
-    playerName: "",
+    playerName: "Anonymous",
     whoWon: "",
   };
 
@@ -83,7 +83,7 @@ class App extends Component {
         <h1 id="header">THE ULTIMATE ROCK, PAPER, SCISSORS</h1>
         <div class="gamemenu">
           <button id="nwply" class="ui circular nwply big button">
-            New Player
+            Change Player
           </button>
           <button
             id="rgame"
@@ -107,7 +107,7 @@ class App extends Component {
         <div className="ui container">
           <div class="row">
             <div class="column left">
-              <h2>Player's Selection</h2>
+              <h2>{this.state.playerName}'s Selection</h2>
               <PlayerView playerPick={this.state.playerPick} />
               <p id="cheathint">Computer will select:</p>
             </div>

@@ -19,7 +19,7 @@ const PlayerView = (props) => {
   }
 
   return (
-    <p class="slct" id={`${getStyle}`}>
+    <p class="slct playerselection" id={`${getStyle}`}>
       {showPlayer}
     </p>
   );
