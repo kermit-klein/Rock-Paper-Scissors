@@ -1,19 +1,21 @@
 import React from "react";
 
 const ComputerView = (props) => {
+  let showComp;
+  let getStyle;
   console.log("comp pick " + props.computerPick);
   if (props.computerPick === "Rock") {
-    var showComp = "ROCK";
-    var getStyle = "rocktext slct";
+    showComp = "ROCK";
+    getStyle = "rocktext slct";
   } else if (props.computerPick === "Scissors") {
-    var showComp = "SCISSORS";
-    var getStyle = "scissorstext slct";
+    showComp = "SCISSORS";
+    getStyle = "scissorstext slct";
   } else if (props.computerPick === "Paper") {
-    var showComp = "PAPER";
-    var getStyle = "papertext slct";
+    showComp = "PAPER";
+    getStyle = "papertext slct";
   } else {
-    var showComp = "???";
-    var getStyle = "";
+    showComp = "???";
+    getStyle = "";
   }
 
   return <p id={`${getStyle}`}>{showComp}</p>;
