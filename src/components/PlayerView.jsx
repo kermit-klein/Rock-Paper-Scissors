@@ -1,16 +1,28 @@
 import React from "react";
 
 const PlayerView = (props) => {
-  console.log("player pick " + props.playerPick);
+  let showPlayer;
+  let getStyle;
+  console.log("comp pick " + props.playerPick);
   if (props.playerPick === "Rock") {
-    return <p id="rocktext slct">ROCK</p>;
+    showPlayer = "ROCK";
+    getStyle = "rocktext";
   } else if (props.playerPick === "Scissors") {
-    return <p id="scissorstext slct">SCISSORS</p>;
+    showPlayer = "SCISSORS";
+    getStyle = "scissorstext";
   } else if (props.playerPick === "Paper") {
-    return <p id="papertext slct">PAPER</p>;
+    showPlayer = "PAPER";
+    getStyle = "papertext";
   } else {
-    return <p id="papertext slct">???</p>;
+    showPlayer = "???";
+    getStyle = "";
   }
+
+  return (
+    <p class="slct" id={`${getStyle}`}>
+      {showPlayer}
+    </p>
+  );
 };
 
 export default PlayerView;
