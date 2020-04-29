@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     playerPick: "",
     computerPick: "",
+    computerFuturePick: "",
     playerScore: 0,
     computerScore: 0,
     tieScore: 0,
@@ -16,6 +17,12 @@ class App extends Component {
     playerName: "Anonymous",
     whoWon: "",
   };
+
+  componentDidMount() {
+    this.setState({
+      computerFuturePick: this.computerRandom(),
+    });
+  }
 
   decideWinner = (player, computer) => {
     if (
@@ -47,12 +54,13 @@ class App extends Component {
 
   runGame = (e) => {
     let playerSelection = e.currentTarget.name;
-    let computerSelection = this.computerRandom();
-    let winner = this.decideWinner(playerSelection, computerSelection);
-
+    let winner = this.decideWinner(
+      playerSelection,
+      this.state.computerFuturePick
+    );
+    this.setState({ computerPick: this.state.computerFuturePick });
     this.setState({
       playerPick: playerSelection,
-      computerPick: computerSelection,
       whoWon: winner,
     });
 
@@ -63,6 +71,8 @@ class App extends Component {
     } else {
       this.setState({ tieScore: this.state.tieScore + 1 });
     }
+    let computerSelection = this.computerRandom();
+    this.setState({ computerFuturePick: computerSelection });
   };
 
   reset = () => {
@@ -75,6 +85,10 @@ class App extends Component {
       cheatMode: false,
       whoWon: "",
     });
+  };
+
+  cheater = () => {
+    this.setState({ cheatMode: true });
   };
 
   changePlayer = () => {
@@ -110,7 +124,7 @@ class App extends Component {
           <div class="selection">
             <h3 id="cheat">CHEAT</h3>
             <label class="switch">
-              <input type="checkbox" />
+              <input type="checkbox" onChange={this.cheater} />
               <span class="slider round"></span>
             </label>
           </div>
@@ -121,7 +135,9 @@ class App extends Component {
             <div class="column left">
               <h2 id="playername">{this.state.playerName}'s Selection</h2>
               <PlayerView playerPick={this.state.playerPick} />
-              <p id="cheathint">Computer will select:</p>
+              <p id="cheathint">
+                Computer will select:{this.state.computerFuturePick}
+              </p>
             </div>
             <div class="column middle">
               <h2>Score</h2>
