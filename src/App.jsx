@@ -77,12 +77,24 @@ class App extends Component {
     });
   };
 
+  changePlayer = () => {
+    let name = prompt("Enter your name here please");
+    if (!name) {
+      name = "Anonymous";
+    }
+    this.setState({ playerName: name });
+  };
+
   render() {
     return (
       <React.Fragment>
         <h1 id="header">THE ULTIMATE ROCK, PAPER, SCISSORS</h1>
         <div class="gamemenu">
-          <button id="nwply" class="ui circular nwply big button">
+          <button
+            id="nwply"
+            class="ui circular nwply big button"
+            onClick={this.changePlayer}
+          >
             Change Player
           </button>
           <button
@@ -107,7 +119,7 @@ class App extends Component {
         <div className="ui container">
           <div class="row">
             <div class="column left">
-              <h2>{this.state.playerName}'s Selection</h2>
+              <h2 id="playername">{this.state.playerName}'s Selection</h2>
               <PlayerView playerPick={this.state.playerPick} />
               <p id="cheathint">Computer will select:</p>
             </div>

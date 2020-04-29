@@ -3,7 +3,6 @@ import React from "react";
 const PlayerView = (props) => {
   let showPlayer;
   let getStyle;
-  console.log("comp pick " + props.playerPick);
   if (props.playerPick === "Rock") {
     showPlayer = "ROCK";
     getStyle = "rocktext";

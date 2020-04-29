@@ -3,7 +3,6 @@ import React from "react";
 const ComputerView = (props) => {
   let showComp;
   let getStyle;
-  console.log("comp pick " + props.computerPick);
   if (props.computerPick === "Rock") {
     showComp = "ROCK";
     getStyle = "rocktext";
