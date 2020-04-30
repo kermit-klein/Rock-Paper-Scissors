@@ -58,10 +58,10 @@ class App extends Component {
       playerSelection,
       this.state.computerFuturePick
     );
-    this.setState({ computerPick: this.state.computerFuturePick });
     this.setState({
       playerPick: playerSelection,
       whoWon: winner,
+      computerPick: this.state.computerFuturePick,
     });
 
     if (winner === "Player") {
@@ -97,6 +97,7 @@ class App extends Component {
       name = "Anonymous";
     }
     this.setState({ playerName: name });
+    this.reset();
   };
 
   render() {
