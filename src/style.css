@@ -111,6 +111,16 @@ button:focus {
     #de6262 100%
   ) !important;
 }
+
+.sresult {
+  background-image: linear-gradient(
+    to right,
+    #ded662 0%,
+    #ffb88c 51%,
+    #ded662 100%
+  ) !important;
+}
+
 .rgame:hover {
   background-position: right center !important;
 }
