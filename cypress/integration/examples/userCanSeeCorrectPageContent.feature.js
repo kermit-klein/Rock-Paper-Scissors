@@ -40,6 +40,6 @@ describe("User can see correct page content", () => {
   });
 
   it("User can't see cheat hint", () => {
-    cy.get("#cheathint").should("not.exist");
+    cy.get("#cheathint").should("not.be.visible");
   });
 });

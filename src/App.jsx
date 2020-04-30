@@ -88,7 +88,7 @@ class App extends Component {
   };
 
   cheater = () => {
-    this.setState({ cheatMode: true });
+    this.setState({ cheatMode: !this.state.cheatMode });
   };
 
   changePlayer = () => {
@@ -100,6 +100,13 @@ class App extends Component {
   };
 
   render() {
+    let cheatStyle;
+    if (this.state.cheatMode) {
+      cheatStyle = {};
+    } else {
+      cheatStyle = { display: "none" };
+    }
+
     return (
       <React.Fragment>
         <h1 id="header">THE ULTIMATE ROCK, PAPER, SCISSORS</h1>
@@ -135,7 +142,7 @@ class App extends Component {
             <div class="column left">
               <h2 id="playername">{this.state.playerName}'s Selection</h2>
               <PlayerView playerPick={this.state.playerPick} />
-              <p id="cheathint">
+              <p id="cheathint" style={cheatStyle}>
                 Computer will select:{this.state.computerFuturePick}
               </p>
             </div>
