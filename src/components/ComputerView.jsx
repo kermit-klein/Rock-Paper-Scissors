@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import styled, { keyframes } from "styled-components";
+import { pulse } from "react-animations";
+
+const Pulse = styled.div`
+  animation: 2s ${keyframes`${pulse}`} infinite;
+`;
+
 class ComputerView extends Component {
   render() {
     let showComp;
@@ -18,7 +25,7 @@ class ComputerView extends Component {
     }
     return (
       <p class="slct compselection" id={`${getStyle}`}>
-        {showComp}
+        <Pulse>{showComp}</Pulse>
       </p>
     );
   }
