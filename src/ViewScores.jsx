@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ViewScores() {
   const storage = window.localStorage;
@@ -17,18 +18,28 @@ export default function ViewScores() {
   });
 
   return (
-    <div className="ui main container scoreboard">
-      <p id="header">Score Board</p>
-      <table class="ui celled table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>{scoreTable}</tbody>
-      </table>
-    </div>
+    <>
+      <div className="ui main container scoreboard">
+        <p id="header">Score Board</p>
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>{scoreTable}</tbody>
+        </table>
+        <Link to="/">
+          <div class="ui animated big button" tabindex="0">
+            <div class="visible content">Back</div>
+            <div class="hidden content">
+              <i class="left arrow icon"></i>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </>
   );
 }

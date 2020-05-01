@@ -4,6 +4,7 @@ import ComputerView from "./components/ComputerView";
 import PlayerView from "./components/PlayerView";
 import ResultShow from "./components/ResultShow";
 import ScoreKeep from "./components/ScoreKeep";
+import { Link } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -147,9 +148,11 @@ class App extends Component {
           >
             Save Score
           </button>
-          <button id="vscore" class="ui circular vscore big button">
-            View Scores
-          </button>
+          <Link to="/viewscores">
+            <button id="vscore" class="ui circular vscore big button">
+              View Scores
+            </button>
+          </Link>
           <div class="selection">
             <h3 id="cheat">CHEAT</h3>
             <label class="switch">
