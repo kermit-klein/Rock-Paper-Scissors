@@ -276,3 +276,16 @@ div p {
 .row {
   margin-top: 20px;
 }
+
+.scoreboard {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50% !important;
+}
+
+th,
+tbody {
+  text-align: center !important;
+}
