@@ -169,7 +169,8 @@ class App extends Component {
               <h2 id="playername">{this.state.playerName}'s Selection</h2>
               <PlayerView playerPick={this.state.playerPick} />
               <p id="cheathint" style={cheatStyle}>
-                Computer will select:{this.state.computerFuturePick}
+                <i class="user secret icon"></i> Computer will select:
+                {this.state.computerFuturePick}
               </p>
             </div>
             <div class="column middle">

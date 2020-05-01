@@ -1,4 +1,10 @@
 import React from "react";
+import styled, { keyframes } from "styled-components";
+import { pulse } from "react-animations";
+
+const Pulse = styled.div`
+  animation: 2s ${keyframes`${pulse}`} infinite;
+`;
 
 const PlayerView = (props) => {
   let showPlayer;
@@ -19,7 +25,7 @@ const PlayerView = (props) => {
 
   return (
     <p class="slct playerselection" id={`${getStyle}`}>
-      {showPlayer}
+      <Pulse>{showPlayer}</Pulse>
     </p>
   );
 };
