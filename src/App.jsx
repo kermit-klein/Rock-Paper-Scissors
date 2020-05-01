@@ -114,6 +114,7 @@ class App extends Component {
     let scoreData = JSON.parse(storage.getItem("scoreData")) || [];
     scoreData.push(scoreInfo);
     storage.setItem("scoreData", JSON.stringify(scoreData));
+    alert("Score saved!");
   };
 
   render() {
