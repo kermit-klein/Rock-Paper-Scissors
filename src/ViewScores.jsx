@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 export default function ViewScores() {
   const storage = window.localStorage;
-  const scoreData = JSON.parse(storage.getItem("scoreData"));
+  let scoreData = JSON.parse(storage.getItem("scoreData"));
+  scoreData == null ? (scoreData = []) : (scoreData = scoreData);
   let scoreTable = [];
   scoreData.forEach((data) => {
     scoreTable.push(
