@@ -4,6 +4,7 @@ import ComputerView from "./components/ComputerView";
 import PlayerView from "./components/PlayerView";
 import ResultShow from "./components/ResultShow";
 import ScoreKeep from "./components/ScoreKeep";
+import { Link } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -100,6 +101,22 @@ class App extends Component {
     this.reset();
   };
 
+  saveResult = () => {
+    let today = new Date();
+    let date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    const storage = window.localStorage;
+    let scoreInfo = { ...this.state, ...{ date: date } };
+    let scoreData = JSON.parse(storage.getItem("scoreData")) || [];
+    scoreData.push(scoreInfo);
+    storage.setItem("scoreData", JSON.stringify(scoreData));
+    alert("Score saved!");
+  };
+
   render() {
     let cheatStyle;
     if (this.state.cheatMode) {
@@ -107,7 +124,6 @@ class App extends Component {
     } else {
       cheatStyle = { display: "none" };
     }
-
     return (
       <React.Fragment>
         <h1 id="header">THE ULTIMATE ROCK, PAPER, SCISSORS</h1>
@@ -126,9 +142,18 @@ class App extends Component {
           >
             Reset Game
           </button>
-          <button id="vscore" class="ui circular vscore big button">
-            View Scores
+          <button
+            id="sresult"
+            class="ui circular sresult big button"
+            onClick={this.saveResult}
+          >
+            Save Score
           </button>
+          <Link to="/viewscores">
+            <button id="vscore" class="ui circular vscore big button">
+              View Scores
+            </button>
+          </Link>
           <div class="selection">
             <h3 id="cheat">CHEAT</h3>
             <label class="switch">
