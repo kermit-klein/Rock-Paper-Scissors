@@ -15,7 +15,11 @@ describe("User can save and view games", () => {
 
   it("User plays game and saves it", () => {
     cy.get("#paper").click();
-    cy.get("#sresult").click();
+    cy.get("#sresult")
+      .click()
+      .should(() => {
+        expect(localStorage.getItem("scoreData")).to.not.be.null;
+      });
     cy.on("window:alert", (str) => {
       expect(str).to.equal("Score saved!");
     });
