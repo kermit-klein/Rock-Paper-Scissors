@@ -5,6 +5,7 @@ import PlayerView from "./components/PlayerView";
 import ResultShow from "./components/ResultShow";
 import ScoreKeep from "./components/ScoreKeep";
 import { Link } from "react-router-dom";
+import { computerRandom } from "./modules/computerRandomSelect";
 
 class App extends Component {
   state = {
@@ -21,7 +22,7 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({
-      computerFuturePick: this.computerRandom(),
+      computerFuturePick: computerRandom(),
     });
   }
 
@@ -36,20 +37,6 @@ class App extends Component {
       return "Tie";
     } else {
       return "Computer";
-    }
-  };
-
-  computerRandom = () => {
-    function getRandomInt(max) {
-      return Math.floor(Math.random() * Math.floor(max));
-    }
-    let roll = getRandomInt(3);
-    if (roll === 0) {
-      return "Rock";
-    } else if (roll === 1) {
-      return "Paper";
-    } else {
-      return "Scissors";
     }
   };
 
@@ -72,7 +59,7 @@ class App extends Component {
     } else {
       this.setState({ tieScore: this.state.tieScore + 1 });
     }
-    let computerSelection = this.computerRandom();
+    let computerSelection = computerRandom();
     this.setState({ computerFuturePick: computerSelection });
   };
 
