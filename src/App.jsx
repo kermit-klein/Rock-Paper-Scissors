@@ -5,6 +5,8 @@ import PlayerView from "./components/PlayerView";
 import ResultShow from "./components/ResultShow";
 import ScoreKeep from "./components/ScoreKeep";
 import { Link } from "react-router-dom";
+import { computerRandom } from "./modules/computerRandomSelect";
+import { decideWinner } from "./modules/gameLogic";
 
 class App extends Component {
   state = {
@@ -21,44 +23,13 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({
-      computerFuturePick: this.computerRandom(),
+      computerFuturePick: computerRandom(),
     });
   }
 
-  decideWinner = (player, computer) => {
-    if (
-      (player === "Paper" && computer === "Rock") ||
-      (player === "Scissors" && computer === "Paper") ||
-      (player === "Rock" && computer === "Scissors")
-    ) {
-      return "Player";
-    } else if (player === computer) {
-      return "Tie";
-    } else {
-      return "Computer";
-    }
-  };
-
-  computerRandom = () => {
-    function getRandomInt(max) {
-      return Math.floor(Math.random() * Math.floor(max));
-    }
-    let roll = getRandomInt(3);
-    if (roll === 0) {
-      return "Rock";
-    } else if (roll === 1) {
-      return "Paper";
-    } else {
-      return "Scissors";
-    }
-  };
-
   runGame = (e) => {
     let playerSelection = e.currentTarget.name;
-    let winner = this.decideWinner(
-      playerSelection,
-      this.state.computerFuturePick
-    );
+    let winner = decideWinner(playerSelection, this.state.computerFuturePick);
     this.setState({
       playerPick: playerSelection,
       whoWon: winner,
@@ -72,7 +43,7 @@ class App extends Component {
     } else {
       this.setState({ tieScore: this.state.tieScore + 1 });
     }
-    let computerSelection = this.computerRandom();
+    let computerSelection = computerRandom();
     this.setState({ computerFuturePick: computerSelection });
   };
 
