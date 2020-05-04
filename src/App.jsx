@@ -6,6 +6,7 @@ import ResultShow from "./components/ResultShow";
 import ScoreKeep from "./components/ScoreKeep";
 import { Link } from "react-router-dom";
 import { computerRandom } from "./modules/computerRandomSelect";
+import { decideWinner } from "./modules/gameLogic";
 
 class App extends Component {
   state = {
@@ -26,26 +27,9 @@ class App extends Component {
     });
   }
 
-  decideWinner = (player, computer) => {
-    if (
-      (player === "Paper" && computer === "Rock") ||
-      (player === "Scissors" && computer === "Paper") ||
-      (player === "Rock" && computer === "Scissors")
-    ) {
-      return "Player";
-    } else if (player === computer) {
-      return "Tie";
-    } else {
-      return "Computer";
-    }
-  };
-
   runGame = (e) => {
     let playerSelection = e.currentTarget.name;
-    let winner = this.decideWinner(
-      playerSelection,
-      this.state.computerFuturePick
-    );
+    let winner = decideWinner(playerSelection, this.state.computerFuturePick);
     this.setState({
       playerPick: playerSelection,
       whoWon: winner,
