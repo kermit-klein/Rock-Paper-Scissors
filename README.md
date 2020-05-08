@@ -87,7 +87,7 @@ I would like to press a button and save my current score
 
 React v.16.13.1, CSS(Semantic UI)  
 **Testing frameworks:** Cypress, Enzyme  
-**Deployed at:** XXXXXXXXXXXX
+**Deployed at:** [Netlify](https://nifty-villani-d7417b.netlify.app/)
 
 ## Improvements
 
