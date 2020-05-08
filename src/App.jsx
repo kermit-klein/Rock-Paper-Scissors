@@ -128,7 +128,12 @@ class App extends Component {
           <div class="selection">
             <h3 id="cheat">CHEAT</h3>
             <label class="switch">
-              <input id="cheatBtn" type="checkbox" onChange={this.cheater} />
+              <input
+                id="cheatBtn"
+                type="checkbox"
+                onChange={this.cheater}
+                checked={this.state.cheatMode}
+              />
               <span class="slider round"></span>
             </label>
           </div>
