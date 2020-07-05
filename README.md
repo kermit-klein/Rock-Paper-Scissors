@@ -1,5 +1,9 @@
 # Rock Paper Scissors Challenge
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a0a580c3-4585-4b08-a9f0-cdec8dfd613f/deploy-status)](https://app.netlify.com/sites/nifty-villani-d7417b/deploys)
+
+![Img](https://i.imgur.com/rS8Xf0C.png)
+
 ## Introduction
 
 A simple Rock-Paper-Scissors game app where you can play against computer. User can activate cheat and see computer's next selection and use it
